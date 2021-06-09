@@ -1,0 +1,115 @@
+CREATE DATABASE PARTS;
+USE PARTS;
+CREATE TABLE PART (
+P_ID VARCHAR(60) NOT NULL,
+PNAME VARCHAR(60) NOT NULL,
+WEIGHT FLOAT NOT NULL,
+CITY VARCHAR(60) NOT NULL);
+
+ALTER TABLE PART
+ADD COLOUR VARCHAR(60) NOT NULL;
+-- handy if you forgot a variable
+
+INSERT INTO PART
+(P_ID, PNAME, WEIGHT, CITY, COLOUR)
+VALUES
+('P1', 'NUT', 12, 'LONDON', 'RED'),
+('P2', 'BOLT', 17 ,'PARIS', 'GREEN'),
+('P3', 'SCREW', 17, 'ROME' , 'BLUE'),
+('P4', 'SCREW', 14 , 'LONDON','RED'),
+('P5', 'CAM', 12 ,'PARIS', 'BLUE'),
+('P6', 'COG',  19, 'LONDON','RED' );
+
+CREATE TABLE PROJECT(
+J_ID VARCHAR(50) NOT NULL,
+JNAME VARCHAR(50) NOT NULL,
+CITY VARCHAR(50) NOT NULL);
+
+INSERT INTO PROJECT
+(J_ID, JNAME, CITY)
+VALUES
+('J1', 'SORTER', 'PARIS'),
+('J2', 'DISPLAY', 'ROME'),
+('J3', 'OCR', 'ATHENS'),
+('J4', 'CONSOLE', 'ATHENS'),
+('J5', 'RAID', 'LONDON'),
+('J6', 'EDS', 'OSLO'),
+('J7', 'TAPE', 'LONDON');
+
+CREATE TABLE SUPPLIER (
+S_ID VARCHAR(50) NOT NULL,
+SNAME VARCHAR(50) NOT NULL,
+STATUS INT NOT NULL,
+CITY VARCHAR(50) NOT NULL);
+
+INSERT INTO SUPPLIER 
+(S_ID, SNAME, STATUS, CITY)
+VALUES
+('S1', 'SMITH', 20, 'LONDON'),
+('S2', 'JONES', 10, 'PARIS'),
+('S3', 'BLAKE', 30, 'PARIS'),
+('S4', 'CLARK', 20, 'LONDON'),
+('S5', 'ADAMS', 30, 'ATHENS');
+
+CREATE TABLE SUPPLY (
+S_ID VARCHAR(50) NOT NULL,
+P_ID VARCHAR(50) NOT NULL,
+J_ID VARCHAR(50) NOT NULL,
+QUANTITY VARCHAR(50) NOT NULL);
+
+INSERT INTO SUPPLY
+(S_ID, P_ID, J_ID, QUANTITY)
+VALUES
+('S1', 'P1', 'J1', 200),
+('S1', 'P1', 'J4', 700),
+('S2', 'P3', 'J1', 400),
+('S2', 'P3', 'J2', 200),
+('S2', 'P3', 'J3', 200),
+('S2', 'P3', 'J4', 500),
+('S2', 'P3', 'J5', 600),
+('S2', 'P3', 'J6', 400),
+('S2', 'P3', 'J7', 800),
+('S2', 'P5', 'J2', 100),
+('S3', 'P3', 'J1', 200),
+('S3', 'P4', 'J2', 500),
+('S4', 'P6', 'J3', 300),
+('S4', 'P6', 'J7', 300),
+('S5', 'P2', 'J2', 200),
+('S5', 'P2', 'J4', 100),
+('S5', 'P5', 'J5', 500),
+('S5', 'P5', 'J7', 100),
+('S5', 'P6', 'J2', 200),
+('S5', 'P1', 'J4', 100),
+('S5', 'P3', 'J4', 200),
+('S5', 'P4', 'J4', 800),
+('S5', 'P5', 'J4',400),
+('S5', 'P6', 'J4', 500);
+
+USE PARTS;
+
+-- return all unique part names
+
+SELECT * FROM part;
+
+SELECT DISTINCT p.pname FROM part p;
+
+SELECT DISTINCT p.PNAME, p.P_ID FROM part p;
+
+SELECT * FROM project;
+
+SELECT project.JNAME FROM project WHERE CITY='LONDON';
+
+SELECT * FROM SUPPLIER;
+
+UPDATE supplier SET
+supplier.STATUS = 16 WHERE supplier.SNAME = ‘SMITH’;
+-- the above does not work
+
+
+
+
+
+
+
+
+
